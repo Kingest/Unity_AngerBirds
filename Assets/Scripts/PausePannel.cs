@@ -6,20 +6,31 @@ public class PausePannel : MonoBehaviour
 {
     public Animator animr;
     public GameObject Pause;
+    private bool isplaying = false;
     public void PauseMenuIn()
     {
-        Pause.SetActive(true);
-        animr.Play("Pause");
-        gameObject.SetActive(false);
-        Invoke("Stop", 1.5f);
+        if (isplaying==false)
+        {
+            Pause.SetActive(true);
+            animr.Play("Pause");
+            gameObject.SetActive(false);
+            Invoke("Stop", 1f);
+            isplaying = true;
+        }
+       
     }
     public void PauseMenuBack()
     {
-       
-        animr.Play("PauseBack");
-        gameObject.SetActive(true);
-        Time.timeScale = 1;
-        Invoke("Play", 1.5f);
+        if (isplaying==true)
+        {
+            Time.timeScale = 1;
+            animr.Play("PauseBack");
+            gameObject.SetActive(true);
+
+            Invoke("Play", 1f);
+            isplaying = false;
+        }
+        
     }
     void Stop()
     {
@@ -28,5 +39,6 @@ public class PausePannel : MonoBehaviour
     void Play()
     {
         Pause.SetActive(false);
+        
     }
 }

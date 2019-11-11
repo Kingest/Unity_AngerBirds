@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public List<Birds> birds;//此处List的是游戏物体上的组件，为C#脚本
+    public List<Birds> birds;//此处List的是游戏物体为GameObject
     public List<Enemy> enemies;
     
     public static GameManager _gameManager;
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// 初始化小鸟
     /// </summary>
-    private void Initialed()
+    private void Initialed()//草了，在Birds中，有行代码是移除birds.this这意味着每次都是从0开始，上一只被移除之后就，下一只生成的小鸟就是i==0号小鸟
     {
         for (int i = 0; i < birds.Count; i++)
         {
@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
             {
                 birds[i].enabled = false;
                 birds[i].spj2d.enabled = false;
+                
             }
             print(i);
         }
